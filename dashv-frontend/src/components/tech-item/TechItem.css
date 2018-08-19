@@ -1,0 +1,16 @@
+.tech-item-container {
+  height: 9rem;
+  min-width: 6rem;
+  font-family: 'Avenir Book'; }
+
+.tech-item {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05); }
+
+.logo {
+  height: 3.5rem;
+  width: 3.5rem; }
+
+.date {
+  font-size: 0.75rem;
+  color: gray; }

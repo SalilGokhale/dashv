@@ -1,0 +1,31 @@
+.app {
+  text-align: center; }
+
+.app-header {
+  height: 6rem;
+  padding: 20px;
+  color: white; }
+
+.app-title {
+  font-size: 1.5em;
+  color: black;
+  font-family: 'Century Gothic'; }
+
+.technology-group {
+  height: 14rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem; }
+  .technology-group .technology-group-header {
+    font-size: 1.25rem;
+    font-family: 'Avenir Book'; }
+  .technology-group .tech-items-container {
+    height: 12rem; }
+
+.column {
+  padding: 0;
+  margin-bottom: 2rem; }
+
+.empty-item {
+  min-width: 6rem;
+  height: 9rem; }

@@ -1,0 +1,18 @@
+.app {
+  text-align: center; }
+
+.app-header {
+  height: 6rem;
+  padding: 20px;
+  color: white; }
+
+.app-title {
+  font-size: 1.5em;
+  color: black;
+  font-family: 'Century Gothic'; }
+
+.technology-group {
+  height: 10rem; }
+  .technology-group .technology-group-header {
+    font-size: 1.25rem;
+    font-family: 'Avenir Book'; }

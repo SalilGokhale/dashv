@@ -1,5 +1,38 @@
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  height: 100%;
+}
+
+// Fonts
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 400;
+  // src: url('../fonts/open-sans-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Century Gothic'), local('Century Gothic'),
+      //  url('../fonts/open-sans-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      //  url('../assets/fonts/') format('woff2'), /* Super Modern Browsers */
+      //  url('../assets/fonts//fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./assets/fonts/CenturyGothic.ttf') format('truetype'), /* Safari, Android, iOS */
+      //  url('../assets/fonts//fonts/open-sans-v13-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Avenir Book';
+  font-style: normal;
+  font-weight: 400;
+  // src: url('../fonts/open-sans-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Avenir Book'), local('Avenir Book'),
+      //  url('../fonts/open-sans-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      //  url('../assets/fonts/') format('woff2'), /* Super Modern Browsers */
+      //  url('../assets/fonts//fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./assets/fonts/AvenirBook.otf') format('truetype'), /* Safari, Android, iOS */
+      //  url('../assets/fonts//fonts/open-sans-v13-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
 }
