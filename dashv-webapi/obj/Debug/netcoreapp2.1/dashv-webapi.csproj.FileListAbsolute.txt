@@ -1,0 +1,14 @@
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/bin/Debug/netcoreapp2.1/dashv-webapi.deps.json
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/bin/Debug/netcoreapp2.1/dashv-webapi.runtimeconfig.json
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/bin/Debug/netcoreapp2.1/dashv-webapi.runtimeconfig.dev.json
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/bin/Debug/netcoreapp2.1/dashv-webapi.dll
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/bin/Debug/netcoreapp2.1/dashv-webapi.pdb
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.csprojAssemblyReference.cache
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.csproj.CoreCompileInputs.cache
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.RazorAssemblyInfo.cache
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.RazorAssemblyInfo.cs
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.AssemblyInfoInputs.cache
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.AssemblyInfo.cs
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.RazorTargetAssemblyInfo.cache
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.dll
+/Users/sagokhale/Code/VersionsWebsite/dashv/dashv-webapi/obj/Debug/netcoreapp2.1/dashv-webapi.pdb
