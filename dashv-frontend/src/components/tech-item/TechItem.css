@@ -8,8 +8,10 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05); }
 
 .logo {
-  height: 3.5rem;
-  width: 3.5rem; }
+  height: 3rem;
+  width: 3rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem; }
 
 .date {
   font-size: 0.75rem;

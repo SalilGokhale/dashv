@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    debugger;
+    this.technologies = this.technologyService.getTechnologies();
     let numberOfColumns = this.getColumnNumber(this.technologies);
 
     return (
@@ -36,8 +36,8 @@ class App extends Component {
                   { Array(3).fill(1).map((cell, j) => {
                     if (i * 3 + j < this.technologies.length) {
                       let technology = this.technologies[i * 3 + j];
-                      return <TechItem title={technology.name} versionNumber={technology.versionNumber}
-                        versionLastDate={technology.versionLastDate} />
+                      return <TechItem key={technology.name} title={technology.name} versionNumber={technology.versionNumber}
+                        versionLastDate={technology.versionLastDate} imageUrl={technology.imageUrl} />
                     }
                     return <div className="mx-2 empty-item"></div>;
                   })}
