@@ -1,0 +1,6 @@
+.vscode
+.DS_Store
+/dashv-backend/.idea
+/dashv-backend/dashv-webapi/bin
+/dashv-backend/dashv-webapi/obj
+
