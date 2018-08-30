@@ -11,6 +11,21 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      technologies: []
+    }
+    this.getTechnologies();
+  }
+
+  getTechnologies() {
+    this.technologyService.getTechnologies().then(technologies => {
+      this.setState({
+        technologies: technologies
+      });
+    })
+    .catch(err => {
+      throw err;
+    });
   }
 
   getColumnNumber(array) {
@@ -19,8 +34,8 @@ class App extends Component {
   }
 
   render() {
-    this.technologies = this.technologyService.getTechnologies();
-    let numberOfColumns = this.getColumnNumber(this.technologies);
+    debugger;
+    let numberOfColumns = this.getColumnNumber(this.state.technologies);
 
     return (
       <div className="h-100">
@@ -34,8 +49,8 @@ class App extends Component {
               return (
                 <div className="col-sm d-flex justify-content-around column">
                   { Array(3).fill(1).map((cell, j) => {
-                    if (i * 3 + j < this.technologies.length) {
-                      let technology = this.technologies[i * 3 + j];
+                    if (i * 3 + j < this.state.technologies.length) {
+                      let technology = this.state.technologies[i * 3 + j];
                       return <TechItem key={technology.name} title={technology.name} versionNumber={technology.versionNumber}
                         versionLastDate={technology.versionLastDate} imageUrl={technology.imageUrl} />
                     }

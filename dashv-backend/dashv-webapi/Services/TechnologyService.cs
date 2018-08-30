@@ -18,7 +18,7 @@ namespace dashvwebapi.Services
                 new Technology
                 {
                     Name = "Angular",
-                    Version = "6.1.1",
+                    VersionNumber = "6.1.1",
                     VersionLastDate = "14/05/18"
                 }
             };

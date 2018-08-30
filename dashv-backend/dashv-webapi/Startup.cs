@@ -38,7 +38,15 @@ namespace dashv_webapi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            var corsOrigins = new string[] { "http://localhost:3000" };
+            
+            app.UseCors(builder => builder
+                .WithOrigins(corsOrigins)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
+            
             app.UseMvc();
         }
     }
