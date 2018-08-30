@@ -3,4 +3,4 @@
 /dashv-backend/.idea
 /dashv-backend/dashv-webapi/bin
 /dashv-backend/dashv-webapi/obj
-/dashv-frontend/package-lock.json
+package-lock.json
