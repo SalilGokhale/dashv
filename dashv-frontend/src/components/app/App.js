@@ -6,7 +6,6 @@ import TechnologyService from '../../services/TechnologyService';
 
 class App extends Component {
 
-  technologies = Array(14).fill(new Technology("Angular", "6.1.1", "14/05/18"));
   technologyService = new TechnologyService();
 
   constructor(props) {
@@ -37,6 +36,10 @@ class App extends Component {
     debugger;
     let numberOfColumns = this.getColumnNumber(this.state.technologies);
 
+    if (this.state.technologies.length == 0) {
+      // Put Loading Indicator here
+      return <div></div>
+    }
     return (
       <div className="h-100">
         <header className="app-header d-flex align-items-center justify-content-center">
@@ -54,7 +57,7 @@ class App extends Component {
                       return <TechItem key={technology.name} title={technology.name} versionNumber={technology.versionNumber}
                         versionLastDate={technology.versionLastDate} imageUrl={technology.imageUrl} />
                     }
-                    return <div className="mx-2 empty-item"></div>;
+                    return <div key={i.toString() + j.toString()} className="mx-2 empty-item"></div>;
                   })}
                 </div>);
             })
