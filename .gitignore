@@ -4,3 +4,4 @@
 /dashv-backend/dashv-webapi/bin
 /dashv-backend/dashv-webapi/obj
 package-lock.json
+dashv-lambda.zip
