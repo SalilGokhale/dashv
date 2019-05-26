@@ -1,7 +1,9 @@
 .vscode
 .DS_Store
-/dashv-backend/.idea
-/dashv-backend/dashv-webapi/bin
-/dashv-backend/dashv-webapi/obj
+
+/dashv-lambda/.idea
+/dashv-lambda/bin
+/dashv-lambda/__pycache__/
+
 package-lock.json
 dashv-lambda.zip
