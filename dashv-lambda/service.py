@@ -4,16 +4,15 @@ import os
 import json
 
 
-def handler(event, context):
-    # Your code goes here!
-    results = dashv.dashv_backend_lambda([
-	    ("golang", "go"),
-	    ("python", "cpython"),
-	    ("angular", "angular"),
-	    ("facebook", "react"),
-	    ("nodejs", "node"),
-	    ("postgres", "postgres"),
-	    ("ruby", "ruby")
-	], os.environ["GITHUB_ACCESS_TOKEN"])
+def get_all(event, context):
+    results = dict(dashv.dashv_backend_lambda([
+        ("golang", "go"),
+        ("python", "cpython"),
+        ("angular", "angular"),
+        ("facebook", "react"),
+        ("nodejs", "node"),
+        ("postgres", "postgres"),
+        ("ruby", "ruby")
+    ], os.environ["GITHUB_ACCESS_TOKEN"]))
 
     return results

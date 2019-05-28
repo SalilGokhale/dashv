@@ -13,12 +13,12 @@ logger = logging.getLogger(__name__)
 def dashv_backend_lambda(github_targets, github_auth_token):
     project_results = defaultdict(dict)
     for owner, name in github_targets:
-        project = GithubVersionedProject(owner, name, github_auth_token)
-        project_results[owner][name] = {"url": project.url, "releases": []}
-        for release in project.releases:
-            project_results[owner][name]["releases"].append({
-                "version": str(release[0]),
-                "date": release[1]
+        project = GithubVersionedProject(owner, name, github_auth_token, 25)
+        project_results[name] = {"url": project.url, "releases": []}
+        if len(project.releases) > 0:
+            project_results[name]["releases"].append({
+                "version": str(project.releases[0][0]),
+                "date": project.releases[0][1]
             })
     return project_results
 
@@ -70,7 +70,7 @@ class GithubVersionedProject(VersionedProject):
     version_query_template = """
         {{
           repository(owner: "{owner}", name: "{name}") {{
-            tags: refs(refPrefix: "refs/tags/", first: 100, orderBy:{{field:TAG_COMMIT_DATE, direction: DESC}}) {{
+            tags: refs(refPrefix: "refs/tags/", first: {number_of_releases}, orderBy:{{field:TAG_COMMIT_DATE, direction: DESC}}) {{
               edges {{
                 tag: node {{
                   name
@@ -93,10 +93,11 @@ class GithubVersionedProject(VersionedProject):
         }}
     """
 
-    def __init__(self, owner, name, github_auth_token):
+    def __init__(self, owner, name, github_auth_token, number_of_releases):
         self.owner = owner
         self.name = name
         self._github_auth_token = github_auth_token
+        self.number_of_releases = number_of_releases
 
     @property
     def url(self):
@@ -125,7 +126,7 @@ class GithubVersionedProject(VersionedProject):
     def _get_raw_tag_data(self):
         response = requests.post(
             "https://api.github.com/graphql",
-            json={"query": self.version_query_template.format(owner=self.owner, name=self.name)},
+            json={"query": self.version_query_template.format(owner=self.owner, name=self.name, number_of_releases=self.number_of_releases)},
             headers={'Authorization': 'bearer {}'.format(self._github_auth_token)}
         )
         response.raise_for_status()
