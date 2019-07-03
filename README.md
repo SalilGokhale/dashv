@@ -1,1 +1,3 @@
 # dashv
+
+This is a website that shows the version number of many popular programming languages/frameworks, all in one place. Just in case you were wondering what versions your favourite technologies are currently on if you haven't been up to date in a while...
