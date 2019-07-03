@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-import dashv
 import os
-import json
+
+import dashv
 
 
 def get_all(event, context):
-    results = dict(dashv.dashv_backend_lambda([
+    results = dict(dashv.get_all([
         ("golang", "go"),
         ("python", "cpython"),
         ("angular", "angular"),

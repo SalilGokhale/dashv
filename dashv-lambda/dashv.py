@@ -1,26 +1,50 @@
 import abc
-import json
-from collections import defaultdict
-import requests
-import os
-import re
-import semantic_version
 import logging
+import multiprocessing as mp
+import re
+from collections import defaultdict
+
+import requests
+import semantic_version
 
 logger = logging.getLogger(__name__)
 
 
-def dashv_backend_lambda(github_targets, github_auth_token):
+def get_all(github_targets, github_auth_token):
     project_results = defaultdict(dict)
-    for owner, name in github_targets:
-        project = GithubVersionedProject(owner, name, github_auth_token, 25)
-        project_results[name] = {"url": project.url, "releases": []}
-        if len(project.releases) > 0:
-            project_results[name]["releases"].append({
-                "version": str(project.releases[0][0]),
-                "date": project.releases[0][1]
-            })
+
+    n = 7 # mp.cpu_count()
+
+    ProjectRetriever.github_auth_token = github_auth_token
+
+    with mp.Pool(n) as p:
+        results = p.map(get_project, github_targets)
+
+        for project in results:
+            project_results.update(project)
+
     return project_results
+
+
+def get_project(target):
+    token = ProjectRetriever.github_auth_token
+    owner = target[0]
+    name = target[1]
+    project = GithubVersionedProject(owner, name, token, 25)
+    project_result = defaultdict(dict)
+    project_result[name] = {"url": project.url, "releases": []}
+    if len(project.releases) > 0:
+        project_result[name]["releases"].append({
+            "version": str(project.releases[0][0]),
+            "date": project.releases[0][1]
+        })
+    return project_result
+
+
+class ProjectRetriever:
+
+    def __init__(self, github_auth_token):
+        self._github_auth_token = github_auth_token
 
 
 class SemanticVersionException(Exception):
@@ -126,7 +150,8 @@ class GithubVersionedProject(VersionedProject):
     def _get_raw_tag_data(self):
         response = requests.post(
             "https://api.github.com/graphql",
-            json={"query": self.version_query_template.format(owner=self.owner, name=self.name, number_of_releases=self.number_of_releases)},
+            json={"query": self.version_query_template.format(owner=self.owner, name=self.name,
+                                                              number_of_releases=self.number_of_releases)},
             headers={'Authorization': 'bearer {}'.format(self._github_auth_token)}
         )
         response.raise_for_status()
