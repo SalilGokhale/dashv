@@ -11,6 +11,13 @@ import semantic_version
 logger = logging.getLogger(__name__)
 
 
+def get(target: object, github_auth_token: object) -> object:
+    ProjectRetrieverSettings.github_auth_token = github_auth_token
+    project_target = (target["owner"], target["name"])
+    return get_project(project_target)
+
+
+# Keeping this for when lambda supports multiprocessing.Pool
 def get_all(github_targets: List[Any], github_auth_token: str):
     project_results = defaultdict(dict)
 
