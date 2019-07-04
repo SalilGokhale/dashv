@@ -3,6 +3,7 @@ import logging
 import multiprocessing as mp
 import re
 from collections import defaultdict
+from typing import List, Any
 
 import requests
 import semantic_version
@@ -10,24 +11,36 @@ import semantic_version
 logger = logging.getLogger(__name__)
 
 
-def get_all(github_targets, github_auth_token):
+def get_all(github_targets: List[Any], github_auth_token: str):
     project_results = defaultdict(dict)
 
-    n = 7 # mp.cpu_count()
+    cpu_count: int = mp.cpu_count()
 
-    ProjectRetriever.github_auth_token = github_auth_token
+    n = len(github_targets) if len(github_targets) <= cpu_count else cpu_count
+
+    partitioned_targets = partition_targets(n, github_targets)
+
+    ProjectRetrieverSettings.github_auth_token = github_auth_token
 
     with mp.Pool(n) as p:
-        results = p.map(get_project, github_targets)
+        results = p.map(get_projects, partitioned_targets)
 
-        for project in results:
-            project_results.update(project)
+        for projects in results:
+            for project in projects:
+                project_results.update(project)
 
     return project_results
 
 
-def get_project(target):
-    token = ProjectRetriever.github_auth_token
+def get_projects(targets: List[Any]):
+    projects = []
+    for target in targets:
+        projects.append(get_project(target))
+    return projects
+
+
+def get_project(target: object) -> object:
+    token = ProjectRetrieverSettings.github_auth_token
     owner = target[0]
     name = target[1]
     project = GithubVersionedProject(owner, name, token, 25)
@@ -41,7 +54,20 @@ def get_project(target):
     return project_result
 
 
-class ProjectRetriever:
+def partition_targets(partition_number, github_targets):
+    partitioned_list: List[List[Any]] = []
+    # first iteration
+    for i in range(partition_number):
+        partitioned_list.append([github_targets[i]])
+
+    if partition_number < len(github_targets):
+        for j in range(partition_number, len(github_targets)):
+            partitioned_list[j % partition_number].append(github_targets[j])
+
+    return partitioned_list
+
+
+class ProjectRetrieverSettings:
 
     def __init__(self, github_auth_token):
         self._github_auth_token = github_auth_token
