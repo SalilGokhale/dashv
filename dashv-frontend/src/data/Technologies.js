@@ -12,7 +12,8 @@ export const technologies = [
     name: 'react',
     owner: 'facebook',
     imageUrl: require('../assets/images/React.svg.png'),
-    versionNumber: null
+    versionNumber: null,
+    versionLastDate: null
   },
   // {
   //   name: 'JavaScript',
@@ -31,7 +32,8 @@ export const technologies = [
     name: 'postgres',
     owner: 'postgres',
     imageUrl: require('../assets/images/PostgreSQL.png'),
-    versionNumber: null
+    versionNumber: null,
+    versionLastDate: null
   },
   // {
   //   name: 'Android',
@@ -46,6 +48,7 @@ export const technologies = [
     name: 'ruby',
     owner: 'ruby',
     imageUrl: require('../assets/images/Ruby.png'),
-    versionNumber: null
+    versionNumber: null,
+    versionLastDate: null
   },
 ]

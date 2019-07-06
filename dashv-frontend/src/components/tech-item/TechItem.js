@@ -9,9 +9,14 @@ class TechItem extends Component {
     this.state = {
       title: props.title,
       version: props.versionNumber ? props.versionNumber : '',
-      date: props.versionLastDate ? props.versionLastDate : '',
+      date: props.versionLastDate ? this.parseDate(props.versionLastDate) : '',
       imageUrl: props.imageUrl
     };
+  }
+
+  parseDate(dateString) {
+    var date = new Date(dateString);
+    return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
   }
 
   render() {

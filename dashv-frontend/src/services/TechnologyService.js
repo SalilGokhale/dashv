@@ -36,7 +36,7 @@ class TechnologyService {
           resultDictionary[projectName] = value[projectName]; 
         }
       });
-      return resultDictionary;
+      return this.parseTechnologies(resultDictionary);
     });
   }
 
@@ -48,6 +48,7 @@ class TechnologyService {
         technology.versionLastDate = versionInfo.versionDate;
       }
     });
+    return technologies;
   }
 
 }

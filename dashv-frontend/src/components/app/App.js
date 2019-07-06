@@ -12,19 +12,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      technologies: technologies
+      technologies: []
     }
     this.getTechnologies();
   }
 
   getTechnologies() {
-    this.technologyService.getTechnologies().then(technologies => {
-      if (technologies === null) {
+    this.technologyService.getTechnologies().then(technologyResults => {
+      if (technologyResults === null) {
         return;
       }
       
       this.setState({
-        technologies: technologies
+        technologies: technologyResults
       });
     })
     .catch(err => {
@@ -55,7 +55,7 @@ class App extends Component {
             {
               Array(numberOfColumns).fill(1).map((col, i) => {
               return (
-                <div className="col-sm d-flex justify-content-around column">
+                <div key={i} className="col-sm d-flex justify-content-around column">
                   { Array(3).fill(1).map((cell, j) => {
                     if (i * 3 + j < this.state.technologies.length) {
                       let technology = this.state.technologies[i * 3 + j];
