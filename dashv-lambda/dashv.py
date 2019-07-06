@@ -51,9 +51,10 @@ def get_project(target: object) -> object:
     owner = target[0]
     name = target[1]
     project = GithubVersionedProject(owner, name, token, 25)
-    project_result = defaultdict(dict)
-    project_result[name] = {"url": project.url, "releases": []}
+    project_result = {name: {"url": project.url, "releases": []}}
     if len(project.releases) > 0:
+        project_result[name]["versionNumber"] = str(project.releases[0][0])
+        project_result[name]["versionDate"] = project.releases[0][1]
         project_result[name]["releases"].append({
             "version": str(project.releases[0][0]),
             "date": project.releases[0][1]

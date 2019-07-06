@@ -8,8 +8,8 @@ class TechItem extends Component {
     super(props);
     this.state = {
       title: props.title,
-      version: props.versionNumber,
-      date: props.versionLastDate,
+      version: props.versionNumber ? props.versionNumber : '',
+      date: props.versionLastDate ? props.versionLastDate : '',
       imageUrl: props.imageUrl
     };
   }

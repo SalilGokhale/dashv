@@ -3,6 +3,7 @@ import TechItem from '../tech-item/TechItem';
 import './App.css';
 import { Technology } from '../../entities/Technology';
 import TechnologyService from '../../services/TechnologyService';
+import { technologies } from '../../data/Technologies';
 
 class App extends Component {
 
@@ -11,13 +12,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      technologies: []
+      technologies: technologies
     }
     this.getTechnologies();
   }
 
   getTechnologies() {
     this.technologyService.getTechnologies().then(technologies => {
+      if (technologies === null) {
+        return;
+      }
+      
       this.setState({
         technologies: technologies
       });
@@ -34,12 +39,12 @@ class App extends Component {
 
   render() {
     debugger;
-    let numberOfColumns = this.getColumnNumber(this.state.technologies);
 
     if (this.state.technologies.length == 0) {
       // Put Loading Indicator here
       return <div></div>
     }
+    let numberOfColumns = this.getColumnNumber(this.state.technologies);
     return (
       <div className="h-100">
         <header className="app-header d-flex align-items-center justify-content-center">
@@ -54,7 +59,7 @@ class App extends Component {
                   { Array(3).fill(1).map((cell, j) => {
                     if (i * 3 + j < this.state.technologies.length) {
                       let technology = this.state.technologies[i * 3 + j];
-                      return <TechItem key={technology.name} title={technology.name} versionNumber={technology.versionNumber}
+                      return <TechItem key={technology.name} title={technology.displayName} versionNumber={technology.versionNumber}
                         versionLastDate={technology.versionLastDate} imageUrl={technology.imageUrl} />
                     }
                     return <div key={i.toString() + j.toString()} className="mx-2 empty-item"></div>;

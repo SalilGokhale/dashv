@@ -1,45 +1,53 @@
 import { mockTechnologies } from "./MockTechResults";
 import { Technology } from "../entities/Technology";
-import { images } from "./TechImages";
+import { technologies } from "../data/Technologies";
+import { apiUrl } from "../ApiUrl"
 const axios = require('axios');
 
 class TechnologyService {
   constructor() {}
 
   getTechnologies() {
-    let technologies = [];
-    // Remote Call
-    return new Promise((resolve, reject) => {
-      axios.get('http://localhost:5000/api/technologies')
-      .then(result => {
-        debugger;
-        if (result.data) {
-          result.data.forEach(tech => {
-            let image = images.find(x => x.name === tech.name);
-            technologies.push(new Technology(
-              tech.name, tech.versionNumber, tech.versionLastDate, image ? image.imageUrl : null
-            ))
-          });
-      
-          resolve(technologies);
-        } else {
-          reject();
-        }
-      })
-      .catch(err => {
-        reject(err);
+    let requests = [];
+
+    requests = technologies.map(x => {
+      var request = new Promise((resolve, reject) => {
+        axios.get(apiUrl + 'owner=' + x.owner + '&name=' + x.name)
+        .then(result => {
+          if (result.data) {
+            resolve(result.data);
+          } else {
+            reject('No result');
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
       });
+      return request;
     });
 
-    // Local Mocking
-    // mockTechnologies.forEach(mockTech => {
-    //   let image = images.find(x => x.name === mockTech.name);
-    //   technologies.push(new Technology(
-    //     mockTech.name, mockTech.versionNumber, mockTech.versionLastDate, image ? image.imageUrl : null
-    //   ))
-    // });
+    return Promise.all(requests).then(values => {
+      var resultDictionary = {}
+      values.forEach(value => {
+        var keys = Object.keys(value);
+        if (keys.length == 1) {
+          var projectName = keys[0];
+          resultDictionary[projectName] = value[projectName]; 
+        }
+      });
+      return resultDictionary;
+    });
+  }
 
-    // return technologies;
+  parseTechnologies(technologyVersionList) {
+    technologies.forEach(technology => {
+      var versionInfo = technologyVersionList[technology.name];
+      if (versionInfo != null) {
+        technology.versionNumber = versionInfo.versionNumber;
+        technology.versionLastDate = versionInfo.versionDate;
+      }
+    });
   }
 
 }
