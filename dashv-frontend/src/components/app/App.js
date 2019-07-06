@@ -38,8 +38,6 @@ class App extends Component {
   }
 
   render() {
-    debugger;
-
     if (this.state.technologies.length == 0) {
       // Put Loading Indicator here
       return <div></div>
