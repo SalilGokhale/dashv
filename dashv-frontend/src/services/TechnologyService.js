@@ -1,11 +1,8 @@
-import { mockTechnologies } from "./MockTechResults";
-import { Technology } from "../entities/Technology";
 import { technologies } from "../data/Technologies";
 import { apiUrl } from "../ApiUrl"
 const axios = require('axios');
 
 class TechnologyService {
-  constructor() {}
 
   getTechnologies() {
     let requests = [];
@@ -31,7 +28,7 @@ class TechnologyService {
       var resultDictionary = {}
       values.forEach(value => {
         var keys = Object.keys(value);
-        if (keys.length == 1) {
+        if (keys.length === 1) {
           var projectName = keys[0];
           resultDictionary[projectName] = value[projectName]; 
         }
