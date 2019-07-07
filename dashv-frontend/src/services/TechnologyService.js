@@ -46,6 +46,7 @@ class TechnologyService {
       if (versionInfo != null) {
         technology.versionNumber = versionInfo.versionNumber;
         technology.versionLastDate = versionInfo.versionDate;
+        technology.repoUrl = versionInfo.url;
       }
     });
     return technologies;

@@ -29,3 +29,10 @@
 .empty-item {
   min-width: 6rem;
   height: 9rem; }
+
+.example-appear {
+  opacity: 0.01; }
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 2s ease-in; }

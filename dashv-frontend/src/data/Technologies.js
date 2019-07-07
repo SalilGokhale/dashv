@@ -70,5 +70,5 @@ export const technologies = [
     name: 'ruby',
     owner: 'ruby',
     imageUrl: require('../assets/images/Ruby.png')
-  },
+  }
 ]

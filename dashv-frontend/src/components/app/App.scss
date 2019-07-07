@@ -39,3 +39,14 @@
   min-width: 6rem;
   height: 9rem;
 }
+
+// Animations
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 2s ease-in;
+}

@@ -10,8 +10,10 @@ class TechItem extends Component {
       title: props.title,
       version: props.versionNumber ? props.versionNumber : '',
       date: props.versionLastDate ? this.parseDate(props.versionLastDate) : '',
-      imageUrl: props.imageUrl
+      imageUrl: props.imageUrl,
+      repoUrl: props.repoUrl
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   parseDate(dateString) {
@@ -19,11 +21,15 @@ class TechItem extends Component {
     return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
   }
 
+  handleClick() {
+    window.open(this.state.repoUrl);
+  }
+
   render() {
 
     return (
       <div className="tech-item-container mx-2">
-        <div className="tech-item h-100 w-100 d-flex flex-column align-items-center">
+        <div className="tech-item h-100 w-100 d-flex flex-column align-items-center" onClick={this.handleClick}>
           <div className="title mb-1 mt-2">{this.state.title}</div>
           <img src={this.state.imageUrl} className="logo"></img>
           <div className="version mt-1">{this.state.version}</div>
