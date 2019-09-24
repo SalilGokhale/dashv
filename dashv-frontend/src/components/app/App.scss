@@ -3,7 +3,7 @@
 }
 
 .app-header {
-  height: 6rem;
+  height: 9rem;
   padding: 20px;
   color: white;
 }
@@ -12,6 +12,13 @@
   font-size: 1.5em;
   color: black;
   font-family: 'Century Gothic';
+}
+
+.app-sub-title {
+  font-size: 1em;
+  color: gray;
+  font-family: 'Century Gothic';
+  text-align: center;
 }
 
 .technology-group {
@@ -49,4 +56,32 @@
 .example-appear.example-appear-active {
   opacity: 1;
   transition: opacity 1s ease-in;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .phantom-column {
+    display: none !important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+  .phantom-column {
+    display: none !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .phantom-column {
+    display: flex !important;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  .phantom-column {
+    display: flex !important;
+  }
 }
