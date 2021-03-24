@@ -1,4 +1,4 @@
-import { technologies } from "../data/Technologies";
+// import { technologies } from "../data/Technologies";
 import { apiUrl } from "../ApiUrl"
 const axios = require('axios');
 
