@@ -62,12 +62,31 @@ jobs:
           delete-removed: true
           # private: true
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      ### Deploy Python Lambda to AWS ###
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install pipenv and libpq
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          cd dashv-lambda
+          pip install pipenv
+
+      - name: Cache pipenv virtualenv
+        id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: pipenv install
+
+      - name: Zip up lambda executable
+        run: zip -r ../dashv-lambda.zip .
+
+        # sudo apt-get install libpq-dev -y
+      
