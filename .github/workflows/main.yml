@@ -38,11 +38,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           
-      - name: NPM Install and Build
-        run: |
-          cd dashv-frontend
-          npm install
-          npm run build
+      # - name: NPM Install and Build
+      #   run: |
+      #     cd dashv-frontend
+      #     npm install
+      #     npm run build
       # - name: Deploy to S3
       #   uses: jakejarvis/s3-sync-action@master
       #   with:
@@ -53,13 +53,13 @@ jobs:
       #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #     AWS_REGION: ${{ secrets.AWS_REGION_S3 }}
       #     SOURCE_DIR: "dashv-frontend/build"
-      - name: Deploy
-        uses: reggionick/s3-deploy@v3
-        with:
-          folder: dashv-frontend/build
-          bucket: ${{ secrets.AWS_PRODUCTION_BUCKET_NAME }}
-          bucket-region: ${{ secrets.AWS_REGION_S3 }}
-          delete-removed: true
+      # - name: Deploy
+      #   uses: reggionick/s3-deploy@v3
+      #   with:
+      #     folder: dashv-frontend/build
+      #     bucket: ${{ secrets.AWS_PRODUCTION_BUCKET_NAME }}
+      #     bucket-region: ${{ secrets.AWS_REGION_S3 }}
+      #     delete-removed: true
           # private: true
 
       ### Deploy Python Lambda to AWS ###
@@ -90,5 +90,18 @@ jobs:
       - name: Zip up lambda executable
         run: zip -r dashv-lambda.zip dashv-lambda
 
-        # sudo apt-get install libpq-dev -y
+      - name: Deploy lambda
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION_LAMBDA }}
+          function_name: dashv-lambda-2
+          zip_file: dashv-lambda.zip
+          memory_size: 128
+          timeout: 10
+          handler: service.get
+          role: ${{ secrets.AWS_LAMBDA_ROLE }}
+          runtime: python3.6
+
       
