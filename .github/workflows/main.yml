@@ -96,7 +96,7 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION_LAMBDA }}
-          function_name: dashv-lambda-2
+          function_name: dashv-lambda
           zip_file: dashv-lambda.zip
           memory_size: 128
           timeout: 10
