@@ -83,10 +83,12 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
-        run: pipenv install
+        run: |
+          cd dashv-lambda
+          pipenv install
 
       - name: Zip up lambda executable
-        run: zip -r ../dashv-lambda.zip .
+        run: zip -r dashv-lambda.zip dashv-lambda
 
         # sudo apt-get install libpq-dev -y
       
