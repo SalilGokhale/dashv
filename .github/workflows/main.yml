@@ -54,13 +54,13 @@ jobs:
       #     AWS_REGION: ${{ secrets.AWS_REGION_S3 }}
       #     SOURCE_DIR: "dashv-frontend/build"
       - name: Deploy
-          uses: reggionick/s3-deploy@v3
-          with:
-            folder: dashv-frontend/build
-            bucket: ${{ secrets.AWS_PRODUCTION_BUCKET_NAME }}
-            bucket-region: ${{ secrets.AWS_REGION_S3 }}
-            delete-removed: true
-            # private: true
+        uses: reggionick/s3-deploy@v3
+        with:
+          folder: dashv-frontend/build
+          bucket: ${{ secrets.AWS_PRODUCTION_BUCKET_NAME }}
+          bucket-region: ${{ secrets.AWS_REGION_S3 }}
+          delete-removed: true
+          # private: true
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
