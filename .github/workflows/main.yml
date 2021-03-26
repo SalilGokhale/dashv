@@ -88,7 +88,9 @@ jobs:
           pipenv install
 
       - name: Zip up lambda executable
-        run: zip -r dashv-lambda.zip dashv-lambda
+        run: |
+          cd dashv-lambda
+          zip -r ../dashv-lambda.zip .
 
       - name: Deploy lambda
         uses: appleboy/lambda-action@master
