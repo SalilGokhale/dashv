@@ -6,7 +6,7 @@ class TechnologyService {
 
   getTechnology(technology) {
     return new Promise((resolve, reject) => {
-      axios.get(apiUrl + 'owner=' + technology.owner + '&name=' + technology.name)
+      axios.get(apiUrl + '?owner=' + technology.owner + '&name=' + technology.name)
           .then(result => {
             if (result.data) {
               const value = result.data;
