@@ -65,11 +65,11 @@ export const technologies = [
     owner: 'mongodb',
     imageUrl: require('../assets/images/MongoDB.png')
   }
-  // ,
-  // {
-  //   displayName: 'Ruby',
-  //   name: 'ruby',
-  //   owner: 'ruby',
-  //   imageUrl: require('../assets/images/Ruby.png')
-  // }
+  ,
+  {
+    displayName: 'Ruby',
+    name: 'ruby',
+    owner: 'ruby',
+    imageUrl: require('../assets/images/Ruby.png')
+  }
 ]
